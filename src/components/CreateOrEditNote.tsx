@@ -4,7 +4,11 @@ import Header from "./Header";
 import { useAppDispatch, useAppSelector } from "../services/redux/hooks";
 import { RootState } from "../services/redux/store";
 import { Note } from "../models/noteData";
-import { createNote, updateNote } from "../services/redux/notes/noteSplice";
+import {
+  createNote,
+  reset,
+  updateNote,
+} from "../services/redux/notes/noteSplice";
 
 const CreateOrEditNote = () => {
   const location = useLocation();
@@ -26,15 +30,17 @@ const CreateOrEditNote = () => {
 
   const [submitted, setSubmitted] = useState(false);
 
+  const noteDetails = noteData?.notes.filter(
+    (n) => n._id === noteId
+  )[0] as Note;
+
   useEffect(() => {
     if (noteId) {
-      const noteDetails = noteData?.notes.filter(
-        (n) => n._id === noteId
-      )[0] as Note;
-
       setNote(noteDetails);
     }
-  }, [noteId, noteData?.notes]);
+    return;
+    dispatch(reset());
+  }, []);
 
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
