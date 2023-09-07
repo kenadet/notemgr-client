@@ -2,7 +2,6 @@ import { Container, Nav, NavLink, Navbar } from "react-bootstrap";
 import { useAppDispatch, useAppSelector } from "../services/redux/hooks";
 import { RootState } from "../services/redux/store";
 import { logout, reset } from "../services/redux/auth/logoutSlice";
-import { useEffect } from "react";
 
 const Header = () => {
   const { loginData } = useAppSelector(

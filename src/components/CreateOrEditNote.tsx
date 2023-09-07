@@ -4,11 +4,7 @@ import Header from "./Header";
 import { useAppDispatch, useAppSelector } from "../services/redux/hooks";
 import { RootState } from "../services/redux/store";
 import { Note } from "../models/noteData";
-import {
-  createNote,
-  getNotes,
-  updateNote,
-} from "../services/redux/notes/noteSplice";
+import { createNote, updateNote } from "../services/redux/notes/noteSplice";
 
 const CreateOrEditNote = () => {
   const location = useLocation();
@@ -16,7 +12,7 @@ const CreateOrEditNote = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const { noteData, isError, isSuccess, isLoading, message } = useAppSelector(
+  const { noteData, isError, isLoading, message } = useAppSelector(
     (state: RootState) => state.noteReducer
   );
 
@@ -38,7 +34,7 @@ const CreateOrEditNote = () => {
 
       setNote(noteDetails);
     }
-  }, [noteId]);
+  }, [noteId, noteData?.notes]);
 
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();

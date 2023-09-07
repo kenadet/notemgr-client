@@ -21,9 +21,7 @@ const Notes = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const { noteData, isError, message } = useAppSelector(
-    (state: RootState) => state.noteReducer
-  );
+  const { noteData } = useAppSelector((state: RootState) => state.noteReducer);
 
   const [noteDelId, setNoteDelId] = useState<string>("");
 
@@ -35,7 +33,7 @@ const Notes = () => {
     return () => {
       dispatch(reset());
     };
-  }, []);
+  }, [dispatch]);
 
   const handleEdit = (id: string) => {
     navigate("/note", {
