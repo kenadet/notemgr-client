@@ -5,13 +5,16 @@ import { useAppDispatch } from "../services/redux/hooks";
 
 import { useEffect } from "react";
 import { reset } from "../services/redux/auth/loginSlice";
+import { useLocation } from "react-router-dom";
 
 const AuthPage = () => {
   const dispatch = useAppDispatch();
 
+  const location = useLocation();
+
   useEffect(() => {
-    dispatch(reset());
-  }, [dispatch]);
+    if (location.pathname === "/login") dispatch(reset());
+  }, [dispatch, location]);
 
   return (
     <>
