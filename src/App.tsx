@@ -14,6 +14,7 @@ const App = () => {
         <Route path="/note" element={<CreateOrEditNote />} />
         <Route path="/note:noteId" element={<CreateOrEditNote />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
+        <Route path="/*" element={<Auth />} />
       </Routes>
     </BrowserRouter>
   );
