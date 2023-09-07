@@ -21,7 +21,7 @@ const login = async (credential: ICredential): Promise<ILoginData> => {
   if (response.data) {
     localStorage.setItem("user", JSON.stringify(response.data));
   }
-  return <ILoginData>JSON.parse(<string>localStorage.getItem("user"));
+  return JSON.parse(localStorage.getItem("user") as string) as ILoginData;
 };
 
 const logout = async (): Promise<void> => {
@@ -51,7 +51,7 @@ export const removeUser = () => {
 };
 
 const getAuthData = () =>
-  <ILoginData>JSON.parse(<string>localStorage.getItem("user"));
+  JSON.parse(localStorage.getItem("user") as string) as ILoginData;
 
 export const isAuthenticated = (): boolean => {
   return getAuthData()?.token ? true : false;

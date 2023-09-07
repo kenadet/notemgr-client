@@ -164,7 +164,7 @@ export const noteSlice = createSlice({
         state.isSuccess = true;
         state.isError = false;
         state.noteData?.notes.filter(
-          (n) => n._id != action.payload._id
+          (n) => n._id !== action.payload._id
         ) as Note[];
       })
       .addCase(

@@ -29,7 +29,7 @@ const CreateOrEditNote = () => {
   useEffect(() => {
     if (noteId) {
       const noteDetails = noteData?.notes.filter(
-        (n) => n._id == noteId
+        (n) => n._id === noteId
       )[0] as Note;
 
       setNote(noteDetails);
