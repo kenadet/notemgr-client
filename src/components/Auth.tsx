@@ -1,30 +1,17 @@
 import RegisterForm from "./Register";
 import LoginForm from "./Login";
 import Header from "./Header";
-import { useAppSelector } from "../services/redux/hooks";
-import { RootState } from "../services/redux/store";
-import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../services/redux/hooks";
+
 import { useEffect } from "react";
+import { reset } from "../services/redux/auth/loginSlice";
 
 const AuthPage = () => {
-  const { loginData, isLoading, isError, isSuccess, message } = useAppSelector(
-    (state: RootState) => state.loginReducer
-  );
-
-  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (isSuccess && loginData) {
-      if (loginData.role === "User") navigate("/notes");
-      else {
-        if (loginData.role === "Admin") {
-          navigate("/users");
-        }
-      }
-    } else {
-      navigate("/login");
-    }
-  }, [navigate, loginData, isLoading, isError, isSuccess, message]);
+    dispatch(reset());
+  }, [dispatch]);
 
   return (
     <>
