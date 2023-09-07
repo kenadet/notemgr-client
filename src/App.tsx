@@ -1,4 +1,4 @@
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import Notes from "./components/Notes";
 import Auth from "./components/Auth";
 import ForgotPassword from "./components/ForgotPassword";
@@ -14,7 +14,7 @@ const App = () => {
         <Route path="/note" element={<CreateOrEditNote />} />
         <Route path="/note:noteId" element={<CreateOrEditNote />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
-        <Route path="*" element={<Auth />} />
+        <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     </BrowserRouter>
   );
