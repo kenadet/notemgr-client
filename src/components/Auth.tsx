@@ -1,20 +1,29 @@
 import RegisterForm from "./Register";
 import LoginForm from "./Login";
 import Header from "./Header";
-import { useAppDispatch } from "../services/redux/hooks";
+import { useAppSelector } from "../services/redux/hooks";
 
 import { useEffect } from "react";
-import { reset } from "../services/redux/auth/loginSlice";
-import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { RootState } from "../services/redux/store";
 
 const AuthPage = () => {
-  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-  const location = useLocation();
+  const { loginData, isSuccess } = useAppSelector(
+    (state: RootState) => state.loginReducer
+  );
 
   useEffect(() => {
-    if (location.pathname === "/login") dispatch(reset());
-  }, [dispatch, location]);
+    if (isSuccess && loginData) {
+      if (loginData.role === "User") navigate("/notes");
+      else {
+        if (loginData.role === "Admin") {
+          navigate("/users");
+        }
+      }
+    }
+  }, [navigate, loginData, isSuccess]);
 
   return (
     <>
