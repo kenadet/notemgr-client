@@ -163,9 +163,14 @@ export const noteSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.isError = false;
-        state.noteData?.notes.filter(
-          (n) => n._id !== action.payload._id
-        ) as Note[];
+        state.noteData = {
+          ...state?.noteData,
+          notes: state.noteData?.notes.filter(
+            (n) => n._id !== action.payload._id
+          ) as Note[],
+          totalpages: state?.noteData?.totalpages as number,
+          currentPage: state?.noteData?.currentPage as number,
+        };
       })
       .addCase(
         deleteNote.rejected,
