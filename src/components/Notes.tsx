@@ -63,7 +63,7 @@ const Notes = () => {
           <div className="col-md-12 p-0">
             <h2 className="mb-4 text-center">Notes</h2>
             <div className="row d-flex justify-content-center">
-              <div className="col-md-6 ms-auto">
+              <div className="col-md-6 ms-auto pe-4">
                 <Link to="/note" className="float-end mb-4">
                   Create Note
                 </Link>
@@ -72,49 +72,51 @@ const Notes = () => {
           </div>
         </div>
         <div className="row">
-          <table className="table table-hover">
-            <thead className="table-dark">
-              <tr>
-                <td>Title</td>
-                <td>Description</td>
-                <td>Category</td>
-                <td></td>
-                <td></td>
-              </tr>
-            </thead>
-            <tbody>
-              {noteData &&
-                noteData.notes.map((note: Note, i) => {
-                  return (
-                    <tr key={i}>
-                      <td>{note.title}</td>
-                      <td>{note.description}</td>
-                      <td>{note.category}</td>
-                      <td>
-                        <button
-                          type="button"
-                          className="btn btn-success"
-                          onClick={() => handleEdit(note._id as string)}
-                        >
-                          <FontAwesomeIcon icon={faEdit} />
-                        </button>
-                      </td>
-                      <td>
-                        <button
-                          type="button"
-                          className="btn btn-success"
-                          onClick={() =>
-                            handleShowConfirmDialog(true, note._id as string)
-                          }
-                        >
-                          <FontAwesomeIcon icon={faTrashAlt} />
-                        </button>
-                      </td>
-                    </tr>
-                  );
-                })}
-            </tbody>
-          </table>
+          <div className="table-responsive">
+            <table className="table table-hover">
+              <thead className="table-dark">
+                <tr>
+                  <td>Title</td>
+                  <td>Description</td>
+                  <td>Category</td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </thead>
+              <tbody>
+                {noteData &&
+                  noteData.notes.map((note: Note, i) => {
+                    return (
+                      <tr key={i}>
+                        <td>{note.title}</td>
+                        <td>{note.description}</td>
+                        <td>{note.category}</td>
+                        <td>
+                          <button
+                            type="button"
+                            className="btn btn-success"
+                            onClick={() => handleEdit(note._id as string)}
+                          >
+                            <FontAwesomeIcon icon={faEdit} />
+                          </button>
+                        </td>
+                        <td>
+                          <button
+                            type="button"
+                            className="btn btn-success"
+                            onClick={() =>
+                              handleShowConfirmDialog(true, note._id as string)
+                            }
+                          >
+                            <FontAwesomeIcon icon={faTrashAlt} />
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+              </tbody>
+            </table>
+          </div>
           <div>
             <Modal
               show={showConfirmDialog}
